@@ -1,0 +1,14 @@
+<theme name="Mountain" description="description" creationDate="20130603"
+	author="Christophe Leroy" updateDate="0" imagePreview="preview"
+	provided="false" type="userXP">
+	<bindings>
+		<binding name="logo" description="">
+			<css-rule>#logo</css-rule>
+			<css-file>css/bonita.css</css-file>
+		</binding>
+		<binding name="blue color" description="text in blue">
+			<css-rule>body</css-rule>
+			<css-file>css/bonita.css</css-file>
+		</binding>
+	</bindings>
+</theme>

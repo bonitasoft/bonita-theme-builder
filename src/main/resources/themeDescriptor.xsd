@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="theme" type="ThemeType" />
+	<xs:complexType name="ThemeType">
+		<xs:sequence>
+			<xs:element name="bindings" type="Bindings" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required" />
+		<xs:attribute name="description" type="xs:string" />
+		<xs:attribute name="author" type="xs:string" />
+		<xs:attribute name="creationDate" type="xs:long" />
+		<xs:attribute name="updateDate" type="xs:long" />
+		<xs:attribute name="imagePreview" type="xs:string" />
+		<xs:attribute name="provided" type="xs:boolean" />
+		<xs:attribute name="type" type="Type" />
+	</xs:complexType>
+	<xs:simpleType name="Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="application" />
+			<xs:enumeration value="usrXP" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="Bindings">
+		<xs:sequence>
+			<xs:element name="binding" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="css-rule " type="xs:string" />
+						<xs:element name="css-file " type="xs:string" />
+					</xs:sequence>
+					<xs:attribute name="name" type="xs:string" use="required" />
+					<xs:attribute name="description" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
+

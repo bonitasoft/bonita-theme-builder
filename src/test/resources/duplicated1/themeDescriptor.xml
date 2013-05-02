@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<theme author="bonitasoft" creationDate="1314188574141" description="" imagePreview="" name="duplicated1" provided="false" type="userXP" updateDate="1314188582201">
+  <bindings>
+    <binding description="WidgetContainerContainer_bottom_right_corner" name="WidgetContainerContainer_bottom_right_corner">
+      <css-rule>#WidgetContainerContainer_bottom_right_corner</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="unified_panels_shadow_top" name="unified_panels_shadow_top">
+      <css-rule>#unified_panels_shadow_top</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_footer_bottom" name="menu_footer_bottom">
+      <css-rule>.menu_footer_bottom</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_header_inner" name="menu_header_inner">
+      <css-rule>.menu_header_inner</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="unified_panels_bottom" name="unified_panels_bottom">
+      <css-rule>#unified_panels_bottom</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_footer_left" name="menu_footer_left">
+      <css-rule>.menu_footer_left</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_footer_inner" name="menu_footer_inner">
+      <css-rule>.menu_footer_inner</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="unified_panels_bottom_right_corner" name="unified_panels_bottom_right_corner">
+      <css-rule>#unified_panels_bottom_right_corner</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="ui_mode_selector" name="ui_mode_selector">
+      <css-rule>#ui_mode_selector</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="WidgetContainerContainer" name="WidgetContainerContainer">
+      <css-rule>#WidgetContainerContainer</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="collapsible_widget_action_icon" name="collapsible_widget_action_icon">
+      <css-rule>.collapsible_widget_action_icon</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="bos_empty_menu" name="bos_empty_menu">
+      <css-rule>.bos_empty_menu</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="header_left_side" name="header_left_side">
+      <css-rule>.header_left_side</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="left_panel_separator" name="left_panel_separator">
+      <css-rule>.left_panel_separator</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_footer_right" name="menu_footer_right">
+      <css-rule>.menu_footer_right</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="bos_float_right" name="bos_float_right">
+      <css-rule>.bos_float_right</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="unified_panels_top_right_corner" name="unified_panels_top_right_corner">
+      <css-rule>#unified_panels_top_right_corner</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="right_side" name="right_side">
+      <css-rule>.right_side</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_header_left" name="menu_header_left">
+      <css-rule>.menu_header_left</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="MessageContainer" name="MessageContainer">
+      <css-rule>#MessageContainer</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="bos_menu_header" name="bos_menu_header">
+      <css-rule>.bos_menu_header</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="left_side" name="left_side">
+      <css-rule>.left_side</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_left_side" name="menu_left_side">
+      <css-rule>.menu_left_side</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="panels_container" name="panels_container">
+      <css-rule>.panels_container</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_right_side" name="menu_right_side">
+      <css-rule>.menu_right_side</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="static_menu_content" name="static_menu_content">
+      <css-rule>.static_menu_content</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_header_right" name="menu_header_right">
+      <css-rule>.menu_header_right</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="headerContainer" name="headerContainer">
+      <css-rule>.headerContainer</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="WidgetContainerContainer_bottom" name="WidgetContainerContainer_bottom">
+      <css-rule>#WidgetContainerContainer_bottom</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_content_container" name="menu_content_container">
+      <css-rule>.menu_content_container</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="unified_panels" name="unified_panels">
+      <css-rule>.unified_panels</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="collapsible_widget" name="collapsible_widget">
+      <css-rule>.collapsible_widget</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="WidgetContainerContainer_bottom_left_corner" name="WidgetContainerContainer_bottom_left_corner">
+      <css-rule>#WidgetContainerContainer_bottom_left_corner</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="html" name="html">
+      <css-rule>html</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="menu_header_inner_content" name="menu_header_inner_content">
+      <css-rule>.menu_header_inner_content</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+    <binding description="header_right_side" name="header_right_side">
+      <css-rule>.header_right_side</css-rule>
+      <css-file>css/BonitaConsole.css</css-file>
+    </binding>
+  </bindings>
+</theme>
