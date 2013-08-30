@@ -49,7 +49,7 @@ public class CSSPropertiesImpl implements CSSProperties {
 
     public static final String PARAM_REGEX = "@(?:.|[\\n\\r])*?;";
 
-    public static final String MEDIA_REGEX = "@media.*\\{(?:(?:.|[\\r\\n])*?\\{(?:.|[\\r\\n])*?\\}(?:.|[\\r\\n])*?)*?\\}";
+    public static final String MEDIA_REGEX = "@media.*\\{(?:(?:[^\\}]|[\\r\\n])*?\\{(?:[^\\}]|[\\r\\n])*?\\}(?:[^\\}]|[\\r\\n])*?)*?\\}";
 
     /**
      * new line character
