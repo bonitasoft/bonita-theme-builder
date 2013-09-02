@@ -79,7 +79,7 @@ public class CSSPropertiesImpl implements CSSProperties {
         rules.clear();
         String cssContent = getCSSContent(input);
         // remove media sections are they are not handled by the theme parser
-        cssContent.replaceAll(MEDIA_REGEX, "");
+        cssContent = cssContent.replaceAll(MEDIA_REGEX, "");
         while (cssContent.trim().length() != 0) {
             if (cssContent.indexOf("{") < 0) {
                 break;
