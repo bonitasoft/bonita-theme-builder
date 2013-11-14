@@ -10,10 +10,12 @@
 	<name>Theme builder</name>
 
 	<scm>
-		<connection>scm:svn:https://rd.svn.bonitasoft.org/bonita-web/theme-builder/trunk</connection>
-		<url>https://rd.svn.bonitasoft.org/bonita-web/theme-builder/trunk</url>
+		<developerConnection>scm:git:git@github.com:bonitasoft/bonita-theme-builder.git</developerConnection>
+		<connection>scm:git:git@github.com:bonitasoft/bonita-theme-builder.git</connection>
+		<url>https://github.com/bonitasoft/bonita-theme-builder</url>
+		<tag>HEAD</tag>
 	</scm>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
