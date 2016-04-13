@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
 import org.bonitasoft.theme.ThemeDescriptorManager;
 import org.bonitasoft.theme.builder.ThemeDescriptorBuilder;
 import org.bonitasoft.theme.builder.impl.ThemeDescriptorBuilderImpl;
@@ -67,8 +68,9 @@ public class ThemeDescriptorManagerImpl implements ThemeDescriptorManager {
         // changed by haoran chen
         themeDescriptorBuilder.createTheme(name, "", 0, "", "", 0, false, ThemeType.application);
         final File tmpFile = themeDescriptorBuilder.done();
-        if(!tmpFile.renameTo(themeDescriptorFile)){
-            throw new IOException(String.format("Failed to rename %s to %s", tmpFile.getAbsolutePath(), themeDescriptorFile.getAbsolutePath()));
+        FileUtils.copyFile(tmpFile, themeDescriptorFile);
+        if (!themeDescriptorFile.exists()) {
+            throw new IOException(String.format("Failed to copy %s to %s", tmpFile.getAbsolutePath(), themeDescriptorFile.getAbsolutePath()));
         }
         themeDescriptorParse.getThemeDescriptors().put(themeDescriptorFile.getPath(), themeDescriptor);
         return themeDescriptor;
