@@ -60,12 +60,16 @@ public class ThemeDescriptorManagerImpl implements ThemeDescriptorManager {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ThemeDescriptor createThemeDescriptor(final String name, final File themeDescriptorFile) throws IOException {
         final ThemeDescriptorBuilder themeDescriptorBuilder = ThemeDescriptorBuilderImpl.getInstance();
         final ThemeDescriptor themeDescriptor = new ThemeDescriptor(name, themeDescriptorFile);
         // changed by haoran chen
         themeDescriptorBuilder.createTheme(name, "", 0, "", "", 0, false, ThemeType.application);
-        themeDescriptorBuilder.done().renameTo(themeDescriptorFile);
+        final File tmpFile = themeDescriptorBuilder.done();
+        if(!tmpFile.renameTo(themeDescriptorFile)){
+            throw new IOException(String.format("Failed to rename %s to %s", tmpFile.getAbsolutePath(), themeDescriptorFile.getAbsolutePath()));
+        }
         themeDescriptorParse.getThemeDescriptors().put(themeDescriptorFile.getPath(), themeDescriptor);
         return themeDescriptor;
     }
@@ -73,6 +77,7 @@ public class ThemeDescriptorManagerImpl implements ThemeDescriptorManager {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ThemeDescriptor updateThemeDescriptor(final ThemeDescriptor themeDescriptor) throws ThemeDescriptorNotFoundException, InvalidThemeDescriptorDefinitionException, IOException {
         final File themeDescriptorFile = themeDescriptor.getThemeDescriptor();
         if (!themeDescriptorFile.exists()) {
@@ -95,12 +100,13 @@ public class ThemeDescriptorManagerImpl implements ThemeDescriptorManager {
     /**
      * {@inheritDoc}
      */
+    @Override
     public ThemeDescriptor getThemeDescriptor(final File themeDescriptorFile) throws ThemeDescriptorNotFoundException {
         if (!themeDescriptorFile.exists()) {
             throw new ThemeDescriptorNotFoundException("ThemeDescriptor file was not found from the path of" + themeDescriptorFile.getPath());
         }
         ThemeDescriptor themeDescriptor = null;        
-        String path = themeDescriptorFile.getPath();
+        final String path = themeDescriptorFile.getPath();
         if (!themeDescriptorParse.getThemeDescriptors().containsKey(path)) {
             themeDescriptor = ThemeDescriptorParse.parse(themeDescriptorFile);
             themeDescriptorParse.getThemeDescriptors().put(themeDescriptorFile.getPath(), themeDescriptor);
@@ -114,14 +120,15 @@ public class ThemeDescriptorManagerImpl implements ThemeDescriptorManager {
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean deleteThemeDescriptor(final File themeDescriptorFile) throws ThemeDescriptorNotFoundException {
         if (!themeDescriptorParse.getThemeDescriptors().containsKey(themeDescriptorFile.getPath())) {
             throw new ThemeDescriptorNotFoundException(themeDescriptorFile.getPath() + "was not found");
         }
-        boolean fileExists = themeDescriptorFile.exists();
+        final boolean fileExists = themeDescriptorFile.exists();
         //Not using getThemeDescriptor sinc we already checked that the map contains our theme descriptor
-        ThemeDescriptor themeDescriptor = themeDescriptorParse.getThemeDescriptors().get(themeDescriptorFile.getPath());
-        boolean provided = themeDescriptor.isProvided();
+        final ThemeDescriptor themeDescriptor = themeDescriptorParse.getThemeDescriptors().get(themeDescriptorFile.getPath());
+        final boolean provided = themeDescriptor.isProvided();
         if (!provided) {
             themeDescriptorParse.getThemeDescriptors().remove(themeDescriptorFile.getPath());
 			if (fileExists) {
