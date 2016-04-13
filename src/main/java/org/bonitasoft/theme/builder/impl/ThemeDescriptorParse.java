@@ -67,13 +67,6 @@ public class ThemeDescriptorParse {
     public static synchronized ThemeDescriptorParse getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new ThemeDescriptorParse();
-            if (themeDescriptors.size() == 0) {
-                try {
-                    themeDescriptors = parseAll(new File(System.getProperty("bonita.home") + File.separator + "client" + File.separator + "web" + File.separator + "XP" + File.separator + "themes"));
-                } catch (final Exception e) {
-                    LOGGER.log(Level.SEVERE, "Invalid theme descriptor parser configuration", e);
-                }
-            }
         }
         return INSTANCE;
     }

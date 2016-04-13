@@ -77,13 +77,9 @@ public class ThemeDescriptorBuilderImpl extends AbstractXMLBuilder implements Th
     /**
      * Create temp themeDescriptor.xml
      */
+    @Override
     public File createTempXMLFile() throws IOException {
-        final String theBonitaHome = System.getProperty("bonita.home");
-        final File theTempFolder = new File(theBonitaHome, File.separator + "client" + File.separator + "tmp");
-        if (!theTempFolder.exists()) {
-            theTempFolder.mkdirs();
-        }
-        final File themeDescriptorDefinitionFile = File.createTempFile("themeDescriptor", ".xml", theTempFolder);
+        final File themeDescriptorDefinitionFile = File.createTempFile("themeDescriptor", ".xml");
         themeDescriptorDefinitionFile.deleteOnExit();
         return themeDescriptorDefinitionFile;
     }
@@ -91,6 +87,7 @@ public class ThemeDescriptorBuilderImpl extends AbstractXMLBuilder implements Th
     /**
      * {@inheritDoc}
      */
+    @Override
     public ThemeDescriptorBuilder createTheme(final String name, final String description, final long creationDate, final String author, final String imagePreview, final long updateDate, final boolean provided, final ThemeType type) {
 
         DocumentBuilder builder;
@@ -125,6 +122,7 @@ public class ThemeDescriptorBuilderImpl extends AbstractXMLBuilder implements Th
     /**
      * {@inheritDoc}
      */
+    @Override
     public ThemeDescriptorBuilder addBinding(final String name, final String description) throws InvalidThemeDescriptorDefinitionException {
         final String[] bindingParentsNames = { XMLThemeDescriptor.THEME };
         try {
@@ -154,6 +152,7 @@ public class ThemeDescriptorBuilderImpl extends AbstractXMLBuilder implements Th
     /**
      * {@inheritDoc}
      */
+    @Override
     public ThemeDescriptorBuilder addCSSRule(final String cssRule) throws InvalidThemeDescriptorDefinitionException {
         final String[] cssRuleParentsNames = { XMLThemeDescriptor.BINDING };
         try {
@@ -174,6 +173,7 @@ public class ThemeDescriptorBuilderImpl extends AbstractXMLBuilder implements Th
     /**
      * {@inheritDoc}
      */
+    @Override
     public ThemeDescriptorBuilder addCSSFile(final String cssFile) throws InvalidThemeDescriptorDefinitionException {
         final String[] cssFileParentsNames = { XMLThemeDescriptor.BINDING };
         try {
