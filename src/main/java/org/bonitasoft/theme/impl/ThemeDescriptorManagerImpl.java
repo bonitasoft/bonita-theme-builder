@@ -20,7 +20,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-import org.apache.commons.io.FileUtils;
 import org.bonitasoft.theme.ThemeDescriptorManager;
 import org.bonitasoft.theme.builder.ThemeDescriptorBuilder;
 import org.bonitasoft.theme.builder.impl.ThemeDescriptorBuilderImpl;
@@ -65,13 +64,7 @@ public class ThemeDescriptorManagerImpl implements ThemeDescriptorManager {
     public ThemeDescriptor createThemeDescriptor(final String name, final File themeDescriptorFile) throws IOException {
         final ThemeDescriptorBuilder themeDescriptorBuilder = ThemeDescriptorBuilderImpl.getInstance();
         final ThemeDescriptor themeDescriptor = new ThemeDescriptor(name, themeDescriptorFile);
-        // changed by haoran chen
-        themeDescriptorBuilder.createTheme(name, "", 0, "", "", 0, false, ThemeType.application);
-        final File tmpFile = themeDescriptorBuilder.done();
-        FileUtils.copyFile(tmpFile, themeDescriptorFile);
-        if (!themeDescriptorFile.exists()) {
-            throw new IOException(String.format("Failed to copy %s to %s", tmpFile.getAbsolutePath(), themeDescriptorFile.getAbsolutePath()));
-        }
+        themeDescriptorBuilder.createTheme(name, "", 0, "", "", 0, false, ThemeType.application).done(themeDescriptorFile);
         themeDescriptorParse.getThemeDescriptors().put(themeDescriptorFile.getPath(), themeDescriptor);
         return themeDescriptor;
     }
@@ -94,7 +87,10 @@ public class ThemeDescriptorManagerImpl implements ThemeDescriptorManager {
             themeDescriptorBuilder.addCSSRule(binding.getCssRule());
             themeDescriptorBuilder.addCSSFile(binding.getCssFile());
         }        
-        themeDescriptorBuilder.updateThemeDescriptorFile(themeDescriptorFile, themeDescriptorBuilder.done());        
+        if (themeDescriptorFile.delete()) {
+            themeDescriptorBuilder.done(themeDescriptorFile);
+        }
+        //  themeDescriptorBuilder.updateThemeDescriptorFile(themeDescriptorFile, themeDescriptorBuilder.done());        
         themeDescriptorParse.getThemeDescriptors().put(themeDescriptorFile.getPath(), themeDescriptor);
         return themeDescriptor;
     }  

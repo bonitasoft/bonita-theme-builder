@@ -27,8 +27,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import junit.framework.Assert;
-
 import org.bonitasoft.theme.builder.ThemeDescriptorBuilder;
 import org.bonitasoft.theme.builder.impl.ThemeDescriptorBuilderImpl;
 import org.bonitasoft.theme.css.CSSManager;
@@ -42,6 +40,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Test;
+
+import junit.framework.Assert;
 
 /**
  * @author haoran.chen
@@ -60,17 +60,17 @@ public class TestLookAndFeels {
     }
 
     public Set<String> getTagSet(File parent) throws IOException {
-        Set<String> tagSet = new HashSet<String>();
-        File[] files = getHTMLFiles(parent);
+        final Set<String> tagSet = new HashSet<String>();
+        final File[] files = getHTMLFiles(parent);
         if (files != null) {
             tagSet.add("html");
-            for (File file : files) {
+            for (final File file : files) {
                 final Document doc = Jsoup.parse(file, "UTF-8");
                 Elements elements = doc.getElementsByTag("body");
                 if (elements.size() > 0) {
-                    Element bodyElement = elements.get(0);
+                    final Element bodyElement = elements.get(0);
                     elements = bodyElement.getAllElements();
-                    for (Element e : elements) {
+                    for (final Element e : elements) {
                         tagSet.add(e.nodeName());
                     }
                 }
@@ -83,14 +83,14 @@ public class TestLookAndFeels {
         final Set<String> idSet = new HashSet<String>();
         final File[] files = getHTMLFiles(parent);
         if (files != null) {
-            for (File file : files) {
-                Document doc = Jsoup.parse(file, "UTF-8");
+            for (final File file : files) {
+                final Document doc = Jsoup.parse(file, "UTF-8");
                 Elements elements = doc.getElementsByTag("body");
                 if (elements.size() > 0) {
-                    Element bodyElement = elements.get(0);
+                    final Element bodyElement = elements.get(0);
                     elements = bodyElement.getAllElements();
-                    for (Element e : elements) {
-                        String id = e.id();
+                    for (final Element e : elements) {
+                        final String id = e.id();
                         if (!id.equals("")) {
                             idSet.add(e.id());
                         }
@@ -104,17 +104,17 @@ public class TestLookAndFeels {
     public Set<String> getClassSet(final File parent) throws IOException {
         final Set<String> classSet = new HashSet<String>();
         final File[] files = getHTMLFiles(parent);
-        for (File file : files) {
+        for (final File file : files) {
             final Document doc = Jsoup.parse(file, "UTF-8");
             Elements elements = doc.getElementsByTag("body");
             if (elements.size() > 0) {
-                Element element = elements.get(0);
+                final Element element = elements.get(0);
                 elements = element.getAllElements();
-                for (Element el : elements) {
-                    Set<String> tempSet = el.classNames();
-                    int size = tempSet.size();
+                for (final Element el : elements) {
+                    final Set<String> tempSet = el.classNames();
+                    final int size = tempSet.size();
                     if (size > 0) {
-                        for (String str : tempSet) {
+                        for (final String str : tempSet) {
                             if (!str.equals("")) {
                                 classSet.add(str);
                             }
@@ -133,7 +133,7 @@ public class TestLookAndFeels {
                 files = parent.listFiles(new FileFilter() {
                     @Override
                     public boolean accept(File file) {
-                        String fileName = file.getName();
+                        final String fileName = file.getName();
                         if (file.isFile() && (fileName.endsWith(".html") || fileName.endsWith(".htm"))) {
                             return true;
                         }
@@ -161,27 +161,27 @@ public class TestLookAndFeels {
 
         final ThemeDescriptorBuilder tdBuilder = ThemeDescriptorBuilderImpl.getInstance();
         tempFile = new File(cssPath);
-        CSSProperties cssProperties = CSSManager.getInstance().createCSSPropertyFromFile(tempFile) ;
+        final CSSProperties cssProperties = CSSManager.getInstance().createCSSPropertyFromFile(tempFile) ;
         cssRulesList = cssProperties.getAllRules() ;
 
         tempFile = new File(htmlParentPath);
         // get tags's names from file named ".html"
         tempSet = getTagSet(tempFile);
-        for (String tag : tempSet) {
+        for (final String tag : tempSet) {
             if (cssRulesList.contains(tag)) {
                 resultSet.add(tag);
             }
         }
         // get classes from file named ".html"
         tempSet = getClassSet(tempFile);
-        for (String className : tempSet) {
+        for (final String className : tempSet) {
             if (cssRulesList.contains("." + className)) {
                 resultSet.add("." + className);
             }
         }
         // get Ids from file named ".html"
         tempSet = getIdSet(tempFile);
-        for (String idName : tempSet) {
+        for (final String idName : tempSet) {
             if (cssRulesList.contains("#" + idName)) {
                 resultSet.add("#" + idName);
             }
@@ -193,9 +193,9 @@ public class TestLookAndFeels {
             xmlFile.delete();
         }
         tdBuilder.createTheme("theme", "", 0, "haoran chen", "", 0, false, ThemeType.application);
-        for (String s : resultSet) {
+        for (final String s : resultSet) {
             if (s.startsWith(".") || s.startsWith("#")) {
-                String temp = s.substring(1);
+                final String temp = s.substring(1);
                 tdBuilder.addBinding(temp, "dsc" + temp);
                 tdBuilder.addCSSRule(s);
                 tdBuilder.addCSSFile(cssTemp);
@@ -205,10 +205,10 @@ public class TestLookAndFeels {
                 tdBuilder.addCSSFile(cssTemp);
             }
         }
-        tdBuilder.done().renameTo(xmlFile);
+        tdBuilder.done(xmlFile);
 
         // parse xml and Check the correctness
-        File insiteXML = new File(xmlParentPath, "themeDescriptor.xml");
+        final File insiteXML = new File(xmlParentPath, "themeDescriptor.xml");
         final StringBuilder file = new StringBuilder();
         try {
             final InputStream ips = new FileInputStream(insiteXML);
@@ -219,11 +219,11 @@ public class TestLookAndFeels {
                 file.append(line + "\n");
             }
             br.close();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.out.println(e.toString());
         }
 
-        for (String st : resultSet) {
+        for (final String st : resultSet) {
             if (!file.toString().contains(st)) {
                 result = false;
                 break;

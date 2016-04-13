@@ -79,9 +79,7 @@ public class ThemeDescriptorBuilderImpl extends AbstractXMLBuilder implements Th
      */
     @Override
     public File createTempXMLFile() throws IOException {
-        final File themeDescriptorDefinitionFile = File.createTempFile("themeDescriptor", ".xml");
-        themeDescriptorDefinitionFile.deleteOnExit();
-        return themeDescriptorDefinitionFile;
+        return File.createTempFile("themeDescriptor", ".xml");
     }
 
     /**

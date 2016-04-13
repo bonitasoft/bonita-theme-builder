@@ -39,6 +39,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.apache.commons.io.FileUtils;
 import org.bonitasoft.theme.exception.InvalidThemeDescriptorDefinitionException;
 import org.bonitasoft.theme.exception.InvalidXMLDefinitionException;
 import org.w3c.dom.Document;
@@ -81,7 +82,7 @@ public abstract class AbstractXMLBuilder {
      */
     protected static Logger LOGGER = Logger.getLogger(AbstractXMLBuilder.class.getName());
 
-    public final File done() throws IOException {
+    public final File done(File targetFile) throws IOException {
         final File themeDescriptorDefinitionFile = createTempXMLFile();
         document.appendChild(rootElement);
         final Source source = new DOMSource(document);
@@ -106,14 +107,17 @@ public abstract class AbstractXMLBuilder {
         } catch (final TransformerException e) {
             LOGGER.log(Level.SEVERE, "Error while generating the forms definition file.", e);
         }
-        return themeDescriptorDefinitionFile;
+        FileUtils.copyFile(themeDescriptorDefinitionFile, targetFile);
+        if (!targetFile.exists()) {
+            throw new IOException(String.format("Failed to copy %s to %s", themeDescriptorDefinitionFile.getAbsolutePath(), targetFile.getAbsolutePath()));
+        }
+        return targetFile;
     }
 
-
     public void updateThemeDescriptorFile(File oldFile, File newFile) throws IOException{        
-        String filePath = oldFile.getAbsolutePath();
+        final String filePath = oldFile.getAbsolutePath();
         if (oldFile.delete()){
-            File updatedFile = new File(filePath);
+            final File updatedFile = new File(filePath);
             copy(newFile,updatedFile);
         }        
     }
@@ -232,11 +236,11 @@ public abstract class AbstractXMLBuilder {
     }
     
     private void copy(File src, File dst) throws IOException {
-        InputStream in = new FileInputStream(src);
-        OutputStream out = new FileOutputStream(dst);
+        final InputStream in = new FileInputStream(src);
+        final OutputStream out = new FileOutputStream(dst);
    
         // Transfer bytes from in to out
-        byte[] buf = new byte[1024];
+        final byte[] buf = new byte[1024];
         int len;
         while ((len = in.read(buf)) > 0) {
             out.write(buf, 0, len);

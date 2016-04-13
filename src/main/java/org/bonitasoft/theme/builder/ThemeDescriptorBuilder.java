@@ -46,7 +46,7 @@ public interface ThemeDescriptorBuilder {
      * @return
      * @throws IOException
      */
-    File done() throws IOException;
+    File done(File targetFile) throws IOException;
 
     /**
      * Update the theme file

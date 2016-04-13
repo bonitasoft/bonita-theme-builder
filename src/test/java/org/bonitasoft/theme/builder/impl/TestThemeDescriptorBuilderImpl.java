@@ -59,19 +59,19 @@ public class TestThemeDescriptorBuilderImpl {
     public void testGenerateSimpleThemeDescriptorXML() throws Exception {
 
         themeDescriptorBuilder.createTheme("Mountain", "", 0, "", "", 0, false, ThemeType.application);
-        File descriptor = themeDescriptorBuilder.done();
+        final File descriptor = themeDescriptorBuilder.done(File.createTempFile("testDesc", ".xml"));
         // read themeConstructor.xml to find Mountain
-        StringBuilder file = new StringBuilder();
+        final StringBuilder file = new StringBuilder();
         try {
-            InputStream ips = new FileInputStream(descriptor);
-            InputStreamReader ipsr = new InputStreamReader(ips);
-            BufferedReader br = new BufferedReader(ipsr);
+            final InputStream ips = new FileInputStream(descriptor);
+            final InputStreamReader ipsr = new InputStreamReader(ips);
+            final BufferedReader br = new BufferedReader(ipsr);
             String line;
             while ((line = br.readLine()) != null) {
                 file.append(line + "\n");
             }
             br.close();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.out.println(e.toString());
         }
         Assert.assertEquals(true, file.toString().contains("Mountain"));
@@ -90,19 +90,19 @@ public class TestThemeDescriptorBuilderImpl {
         themeDescriptorBuilder.addCSSRule("body");
         themeDescriptorBuilder.addCSSFile("bonita.css");
 
-        File descriptor = themeDescriptorBuilder.done();
+        final File descriptor = themeDescriptorBuilder.done(File.createTempFile("testDesc", ".xml"));
         // read themeConstructor.xml to find "Qixiang Zhang"
-        StringBuilder file = new StringBuilder();
+        final StringBuilder file = new StringBuilder();
         try {
-            InputStream ips = new FileInputStream(descriptor);
-            InputStreamReader ipsr = new InputStreamReader(ips);
-            BufferedReader br = new BufferedReader(ipsr);
+            final InputStream ips = new FileInputStream(descriptor);
+            final InputStreamReader ipsr = new InputStreamReader(ips);
+            final BufferedReader br = new BufferedReader(ipsr);
             String line;
             while ((line = br.readLine()) != null) {
                 file.append(line + "\n");
             }
             br.close();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             System.out.println(e.toString());
         }
         Assert.assertEquals(true, file.toString().contains("Qixiang Zhang"));
